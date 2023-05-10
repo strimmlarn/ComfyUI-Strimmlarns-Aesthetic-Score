@@ -1,9 +1,7 @@
 import webdataset as wds
 from PIL import Image
-import io
 import matplotlib.pyplot as plt
 import os
-import json
 
 from warnings import filterwarnings
 
@@ -14,12 +12,10 @@ import torch
 from torchvision import datasets, transforms
 from torchvision.transforms import ToPILImage
 
-import tqdm
 from os.path import join
 from datasets import load_dataset
 import pandas as pd
 from torch.utils.data import Dataset, DataLoader
-import json
 import clip
 from PIL import Image, ImageFile
 
@@ -29,9 +25,9 @@ import folder_paths
 # create path to aesthetic model.
 folder_paths.folder_names_and_paths["aesthetic"] = ([os.path.join(folder_paths.models_dir,"aesthetic")], folder_paths.supported_pt_extensions)
 
-#return {"required":{"images": ("IMAGE",)}, "optional": {"model_name": (folder_paths.get_filename_list("aesthetic"), )}}
-
-# if you changed the MLP architecture during training, change it also here:
+#
+# Class taken from https://github.com/christophschuhmann/improved-aesthetic-predictor simple_inference.py
+#
 class MLP(pl.LightningModule):
     def __init__(self, input_size, xcol='emb', ycol='avg_rating'):
         super().__init__()
