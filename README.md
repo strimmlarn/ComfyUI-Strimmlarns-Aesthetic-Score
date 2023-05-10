@@ -17,8 +17,8 @@ Generate 4 images with diffrent samplers and sort them by aesthetic score. Higes
   ![image](https://raw.githubusercontent.com/strimmlarn/ComfyUI_Strimmlarns_aesthetic_score/main/example/sort4imagestoptobotton.png)
 
 # Other Projects Similar Topic
-  [Improved Aesthetic Score Predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor) 
-  [SD-Chad](https://github.com/grexzen/SD-Chad) for ComfyUI
-  [Aesthetic Image Scorer](https://github.com/tsngo/stable-diffusion-webui-aesthetic-image-scorer)
-  [Aesthetic Scorer extension for SD Automatic WebUI](https://github.com/vladmandic/sd-extension-aesthetic-scorer)
-  [Simulacra Aesthetic Models ](https://github.com/crowsonkb/simulacra-aesthetic-models)
+  * [Improved Aesthetic Score Predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor) 
+  * [SD-Chad](https://github.com/grexzen/SD-Chad)
+  * [Aesthetic Image Scorer](https://github.com/tsngo/stable-diffusion-webui-aesthetic-image-scorer)
+  * [Aesthetic Scorer extension for SD Automatic WebUI](https://github.com/vladmandic/sd-extension-aesthetic-scorer)
+  * [Simulacra Aesthetic Models ](https://github.com/crowsonkb/simulacra-aesthetic-models)

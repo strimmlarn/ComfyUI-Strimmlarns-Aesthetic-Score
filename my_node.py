@@ -1,6 +1,6 @@
-import webdataset as wds
+#import webdataset as wds
 from PIL import Image
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import os
 
 from warnings import filterwarnings
@@ -9,18 +9,17 @@ import pytorch_lightning as pl
 import torch.nn as nn
 import torch
 
-from torchvision import datasets, transforms
-from torchvision.transforms import ToPILImage
+#from torchvision import datasets, transforms
+#from torchvision.transforms import ToPILImage
 
 from os.path import join
-from datasets import load_dataset
-import pandas as pd
-from torch.utils.data import Dataset, DataLoader
+#from datasets import load_dataset
+#import pandas as pd
+#from torch.utils.data import Dataset, DataLoader
 import clip
-from PIL import Image, ImageFile
+from PIL import Image#, ImageFile
 
 import folder_paths
-
 
 # create path to aesthetic model.
 folder_paths.folder_names_and_paths["aesthetic"] = ([os.path.join(folder_paths.models_dir,"aesthetic")], folder_paths.supported_pt_extensions)
@@ -80,7 +79,7 @@ class AesteticModel:
     return { "required": {"model_name": (folder_paths.get_filename_list("aesthetic"), )}}
   RETURN_TYPES = ("AESTHETIC_MODEL",)
   FUNCTION = "load_model"
-  CATEGORY = "Example"
+  CATEGORY = "aestheticscore"
   def load_model(self, model_name):
     #load model
     m_path = folder_paths.folder_names_and_paths["aesthetic"][0]
