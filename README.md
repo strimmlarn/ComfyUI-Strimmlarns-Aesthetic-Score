@@ -19,13 +19,13 @@ Grade images by using code from [Improved Aesthetic Score Predictor](https://git
 ### Load Aesthetic Model:
 You pick a model
 
-### Calculate Aestetic Score 
+### Calculate Aestetic Score:
 Give image score, needs model and image
 
-### Aesthetic Score Sorter
+### Aesthetic Score Sorter:
 Takes 2 images and 2 scores and output 2 images and 2 score where image paired with best score gets the top output. 
 
-### Score To Number
+### Score To Number:
 Convert the score so it can be used in nodes requiring a number. Alot of stuff in [Was Node Suite](https://github.com/WASasquatch/was-node-suite-comfyui/]) use number as intput. 
 
 

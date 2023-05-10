@@ -1,24 +1,12 @@
-#import webdataset as wds
 from PIL import Image
-#import matplotlib.pyplot as plt
 import os
-
 from warnings import filterwarnings
-
 import pytorch_lightning as pl
 import torch.nn as nn
 import torch
-
-#from torchvision import datasets, transforms
-#from torchvision.transforms import ToPILImage
-
 from os.path import join
-#from datasets import load_dataset
-#import pandas as pd
-#from torch.utils.data import Dataset, DataLoader
 import clip
 from PIL import Image#, ImageFile
-
 import folder_paths
 
 # create path to aesthetic model.
@@ -109,9 +97,8 @@ class CalculateAestheticScore:
     model.load_state_dict(s)
     model.to("cuda")
     model.eval()
-    device = "cuda" # if torch.cuda.is_available() else "cpu"
+    device = "cuda" 
     model2, preprocess = clip.load("ViT-L/14", device=device)  #RN50x64   
-    #batch_size, height, width, _ = image.shape
     tensor_image = image[0]
     img = (tensor_image * 255).to(torch.uint8).numpy()
     pil_image = Image.fromarray(img, mode='RGB')
@@ -122,6 +109,7 @@ class CalculateAestheticScore:
     im_emb_arr = normalized(image_features.cpu().detach().numpy() )
     prediction = model(torch.from_numpy(im_emb_arr).to(device).type(torch.cuda.FloatTensor))
     final_prediction = int(float(prediction[0])*100)
+    #hopefully free vram not freezing my computer
     del model
     return (final_prediction,)
 
