@@ -72,7 +72,7 @@ def normalized(a, axis=-1, order=2):
     l2[l2 == 0] = 1
     return a / np.expand_dims(l2, axis)
 
-class LoadAesteticModel:
+class AesteticModel:
   def __init__(self):
     pass
   @classmethod
@@ -83,13 +83,10 @@ class LoadAesteticModel:
   CATEGORY = "Example"
   def load_model(self, model_name):
     #load model
-    model = MLP(768)  # CLIP embedding dim is 768 for CLIP ViT L 14
     m_path = folder_paths.folder_names_and_paths["aesthetic"][0]
     m_path2 = os.path.join(m_path[0],model_name)
-    s = torch.load(m_path2)
-    model.load_state_dict(s)
-    model.to("cuda")
-    model.eval()
+    return (m_path2,)
+
     return (model,)
 
 class CalculateAestheticScore:
@@ -107,7 +104,12 @@ class CalculateAestheticScore:
   FUNCTION = "execute"
   CATEGORY = "aestheticscore"
   def execute(self, image, aesthetic_model):
-    model = aesthetic_model
+    m_path2 = aesthetic_model
+    model = MLP(768)  # CLIP embedding dim is 768 for CLIP ViT L 14
+    s = torch.load(m_path2)
+    model.load_state_dict(s)
+    model.to("cuda")
+    model.eval()
     device = "cuda" # if torch.cuda.is_available() else "cpu"
     model2, preprocess = clip.load("ViT-L/14", device=device)  #RN50x64   
     #batch_size, height, width, _ = image.shape
@@ -120,7 +122,9 @@ class CalculateAestheticScore:
       pass
     im_emb_arr = normalized(image_features.cpu().detach().numpy() )
     prediction = model(torch.from_numpy(im_emb_arr).to(device).type(torch.cuda.FloatTensor))
-    return (int(float(prediction[0])*100),)
+    final_prediction = int(float(prediction[0])*100)
+    del model
+    return (final_prediction,)
 
 
 class AesthetlcScoreSorter:
@@ -165,7 +169,7 @@ class ScoreToNumber:
 
 NODE_CLASS_MAPPINGS = {
     "CalculateAestheticScore": CalculateAestheticScore,
-    "LoadAesteticModel":LoadAesteticModel,
+    "LoadAesteticModel":AesteticModel,
     "AesthetlcScoreSorter": AesthetlcScoreSorter,
     "ScoreToNumber":ScoreToNumber 
 }
