@@ -6,12 +6,11 @@ Grade images by using code from [Improved Aesthetic Score Predictor](https://git
 
 # Install
   1. clone repository to custom_nodes
-  2. pip install -r requirements.txt in same python enviroment you use when using ComfyUI.
-  3. download a model, I have tried: 
+  2. download a model, I have tried: 
       *    https://raw.githubusercontent.com/grexzen/SD-Chad/blob/main/chadscorer.pth
       *    https://raw.githubusercontent.com/christophschuhmann/improved-aesthetic-predictor/blob/main/ava%2Blogos-l14-linearMSE.pth
-  4. put model inside folder "\<ComfyUI dir>/models/aesthetic/". Make dir, its not there. 
-  5. Run ComfyUI and pray
+  3. put model inside folder "\<ComfyUI dir>/models/aesthetic/". Make dir, its not there. 
+  4. Run ComfyUI and pray
 
 # Nodes
 
