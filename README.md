@@ -1,4 +1,4 @@
-# ComfyUI_Strimmlarns_aesthetic_score
+# ComfyUI-Strimmlarns-Aesthetic-Score
 Aesthetic score for comfy ui
 
 # About
