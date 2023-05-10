@@ -9,7 +9,7 @@ Grade images by using code from [Improved Aesthetic Score Predictor](https://git
   2. download a model, I have tried: 
       *    https://raw.githubusercontent.com/grexzen/SD-Chad/blob/main/chadscorer.pth
       *    https://raw.githubusercontent.com/christophschuhmann/improved-aesthetic-predictor/blob/main/ava%2Blogos-l14-linearMSE.pth
-  3. put model inside folder "\<ComfyUI dir>/models/aesthetic/". Make dir, its not there. 
+  3. put model inside folder "\<ComfyUI dir>/models/aesthetic/". Make dir, its not there
   4. Run ComfyUI and pray
 
 # Nodes
@@ -20,14 +20,13 @@ Grade images by using code from [Improved Aesthetic Score Predictor](https://git
 You pick a model
 
 ### Calculate Aestetic Score:
-Give image score, needs model and image
+Calculate image score, needs model and image
 
 ### Aesthetic Score Sorter:
-Takes 2 images and 2 scores and output 2 images and 2 score where image paired with best score gets the top output. 
+Takes 2 images and 2 scores and output 2 images and 2 score where image paired with best score gets the top output
 
 ### Score To Number:
-Convert the score so it can be used in nodes requiring a number. Alot of stuff in [Was Node Suite](https://github.com/WASasquatch/was-node-suite-comfyui/]) use number as intput. 
-
+Convert the score so it can be used in nodes requiring a number. Alot of stuff in [Was Node Suite](https://github.com/WASasquatch/was-node-suite-comfyui/]) use number as intput
 
 # Example Project
 Generate 4 images with diffrent samplers and sort them by aesthetic score. Higest to lowest, json included in image:

@@ -54,7 +54,6 @@ class MLP(pl.LightningModule):
         return optimizer
 def normalized(a, axis=-1, order=2):
     import numpy as np  # pylint: disable=import-outside-toplevel
-
     l2 = np.atleast_1d(np.linalg.norm(a, order, axis))
     l2[l2 == 0] = 1
     return a / np.expand_dims(l2, axis)
@@ -73,8 +72,6 @@ class AesteticModel:
     m_path = folder_paths.folder_names_and_paths["aesthetic"][0]
     m_path2 = os.path.join(m_path[0],model_name)
     return (m_path2,)
-
-    return (model,)
 
 class CalculateAestheticScore:
   def __init__(self):
@@ -112,7 +109,6 @@ class CalculateAestheticScore:
     #hopefully free vram not freezing my computer
     del model
     return (final_prediction,)
-
 
 class AesthetlcScoreSorter:
   def __init__(self):
@@ -153,14 +149,12 @@ class ScoreToNumber:
   CATEGORY = "aestheticscore"
   def convert(self,score):
     return (score,)
-
 NODE_CLASS_MAPPINGS = {
     "CalculateAestheticScore": CalculateAestheticScore,
     "LoadAesteticModel":AesteticModel,
     "AesthetlcScoreSorter": AesthetlcScoreSorter,
     "ScoreToNumber":ScoreToNumber 
 }
-
 NODE_DISPLAY_NAME_MAPPINGS = {
     "LoadAesteticModel": "LoadAesteticModel",
     "CalculateAestheticScore": "CalculateAestheticScore",
