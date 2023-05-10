@@ -18,13 +18,13 @@ Grade images by using code from [Improved Aesthetic Score Predictor](https://git
 ![image](https://raw.githubusercontent.com/strimmlarn/ComfyUI_Strimmlarns_aesthetic_score/main/example/nodes.png)
 
 ### Load Aesthetic Model:
-you pick a model
+You pick a model
 
 ### Calculate Aestetic Score 
-give image score, needs model and image
+Give image score, needs model and image
 
 ### Aesthetic Score Sorter
-takes 2 images and 2 scores and output 2 images and 2 score where image paired with best score gets the top output. 
+Takes 2 images and 2 scores and output 2 images and 2 score where image paired with best score gets the top output. 
 
 ### Score To Number
 Convert the score so it can be used in nodes requiring a number. Alot of stuff in [Was Node Suite](https://github.com/WASasquatch/was-node-suite-comfyui/]) use number as intput. 
