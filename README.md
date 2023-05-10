@@ -1,5 +1,5 @@
 # ComfyUI-Strimmlarns-Aesthetic-Score
-Aesthetic score for comfy ui
+Aesthetic score for ComfyUI
 
 # About
 Grade images by using code from [Improved Aesthetic Score Predictor](https://github.com/christophschuhmann/improved-aesthetic-predictor) for ComfyUI
