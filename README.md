@@ -11,3 +11,6 @@ Grade images by using code from [Aesthetic Score Predictor](https://github.com/c
       *    https://github.com/christophschuhmann/improved-aesthetic-predictor/blob/main/ava%2Blogos-l14-linearMSE.pth
   3. put model inside folder "\<ComfyUI dir>/models/aesthetic/". Make dir, its not there. 
   4. Run ComfyUI and pray
+
+# Example
+  ![ezcv logo](https://raw.githubusercontent.com/strimmlarn/ComfyUI_Strimmlarns_aesthetic_score/main/example/sort4imagestoptobotton.png)
