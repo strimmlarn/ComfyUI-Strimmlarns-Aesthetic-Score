@@ -1,2 +1,2 @@
-#webdataset 
-#datasets
+# Todo, figure out all dependencies and sane versions
+clip 
