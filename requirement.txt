@@ -1,3 +1,2 @@
 # Todo, figure out all dependencies and sane versions
-# Also, figure out how issue tracker work, lmao.
 clip 
