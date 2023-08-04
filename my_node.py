@@ -74,41 +74,65 @@ class AesteticModel:
     return (m_path2,)
 
 class CalculateAestheticScore:
-  def __init__(self):
-    pass
-  @classmethod
-  def INPUT_TYPES(s):
-        return {
-          "required":{
-            "image": ("IMAGE",),
-            "aesthetic_model": ("AESTHETIC_MODEL",),
-          }
-        }
-  RETURN_TYPES = ("SCORE",)
-  FUNCTION = "execute"
-  CATEGORY = "aestheticscore"
-  def execute(self, image, aesthetic_model):
-    m_path2 = aesthetic_model
-    model = MLP(768)  # CLIP embedding dim is 768 for CLIP ViT L 14
-    s = torch.load(m_path2)
-    model.load_state_dict(s)
-    model.to("cuda")
-    model.eval()
     device = "cuda" 
-    model2, preprocess = clip.load("ViT-L/14", device=device)  #RN50x64   
-    tensor_image = image[0]
-    img = (tensor_image * 255).to(torch.uint8).numpy()
-    pil_image = Image.fromarray(img, mode='RGB')
-    image2 = preprocess(pil_image).unsqueeze(0).to(device)
-    with torch.no_grad():
-      image_features = model2.encode_image(image2)
-      pass
-    im_emb_arr = normalized(image_features.cpu().detach().numpy() )
-    prediction = model(torch.from_numpy(im_emb_arr).to(device).type(torch.cuda.FloatTensor))
-    final_prediction = int(float(prediction[0])*100)
-    #hopefully free vram not freezing my computer
-    del model
-    return (final_prediction,)
+    model2 = None
+    preprocess = None
+    model = None
+
+    def __init__(self):
+        pass
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "image": ("IMAGE",),
+                "aesthetic_model": ("AESTHETIC_MODEL",),
+            },
+            "optional": {
+                "keep_in_memory": ("BOOL", {"default": True}),
+            }
+        }
+
+    RETURN_TYPES = ("SCORE",)
+    FUNCTION = "execute"
+    CATEGORY = "aestheticscore"
+
+    def execute(self, image, aesthetic_model, keep_in_memory):
+        if not self.model2 or not self.preprocess:
+            self.model2, self.preprocess = clip.load("ViT-L/14", device=self.device)  #RN50x64 
+
+        m_path2 = aesthetic_model
+
+        if not self.model:
+            self.model = MLP(768)  # CLIP embedding dim is 768 for CLIP ViT L 14
+            s = torch.load(m_path2)
+            self.model.load_state_dict(s)
+            self.model.to(self.device)
+        
+        self.model.eval()
+
+        tensor_image = image[0]
+        img = (tensor_image * 255).to(torch.uint8).numpy()
+        pil_image = Image.fromarray(img, mode='RGB')
+
+        # Use the class variable preprocess
+        image2 = self.preprocess(pil_image).unsqueeze(0).to(self.device)
+
+        with torch.no_grad():
+            # Use the class variable model2
+            image_features = self.model2.encode_image(image2)
+
+        im_emb_arr = normalized(image_features.cpu().detach().numpy())
+        prediction = self.model(torch.from_numpy(im_emb_arr).to(self.device).type(torch.cuda.FloatTensor))
+        final_prediction = int(float(prediction[0])*100)
+
+        if not keep_in_memory:
+            self.model = None
+            self.model2 = None
+            self.preprocess = None
+
+        return (final_prediction,)
 
 class AesthetlcScoreSorter:
   def __init__(self):
