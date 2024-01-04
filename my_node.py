@@ -58,7 +58,7 @@ def normalized(a, axis=-1, order=2):
     l2[l2 == 0] = 1
     return a / np.expand_dims(l2, axis)
 
-class AesteticModel:
+class AestheticModel:
   def __init__(self):
     pass
   @classmethod
@@ -110,7 +110,7 @@ class CalculateAestheticScore:
     del model
     return (final_prediction,)
 
-class AesthetlcScoreSorter:
+class AestheticScoreSorter:
   def __init__(self):
     pass
   pass
@@ -151,13 +151,13 @@ class ScoreToNumber:
     return (score,)
 NODE_CLASS_MAPPINGS = {
     "CalculateAestheticScore": CalculateAestheticScore,
-    "LoadAesteticModel":AesteticModel,
-    "AesthetlcScoreSorter": AesthetlcScoreSorter,
+    "LoadAestheticModel":AestheticModel,
+    "AestheticScoreSorter": AestheticScoreSorter,
     "ScoreToNumber":ScoreToNumber 
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "LoadAesteticModel": "LoadAesteticModel",
+    "LoadAestheticModel": "LoadAestheticModel",
     "CalculateAestheticScore": "CalculateAestheticScore",
-    "AesthetlcScoreSorter": "AesthetlcScoreSorter",
+    "AestheticScoreSorter": "AestheticScoreSorter",
     "ScoreToNumber":"ScoreToNumber"
 }
